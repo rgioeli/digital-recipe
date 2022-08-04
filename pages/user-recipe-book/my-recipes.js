@@ -56,7 +56,7 @@ const MyRecipesPage = () => {
             ))
           ) : (
             <>
-              <p>You don't have any recipes yet.</p>
+              <p>You do not have any recipes yet.</p>
               <button>Click here to create one</button>
             </>
           )}
