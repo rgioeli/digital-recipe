@@ -5,7 +5,7 @@ export const authOptions = {
   // Configure one or more authentication providers
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async signIn({ account, profile }) {
+    async signIn({ profile }) {
       // this triggers when the user logs in
       // we want to check if they're saved in the databse
       // if its a new user add them to the database
