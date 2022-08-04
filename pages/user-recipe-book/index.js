@@ -26,6 +26,7 @@ const Index = () => {
           width={640}
           height={480}
           objectFit={"cover"}
+          priority
         />
       </div>
       <div className="user-menu">
