@@ -3,7 +3,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { mongodb } from "../../../src/library/mongodb";
 export const authOptions = {
   // Configure one or more authentication providers
-  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ profile }) {
       // this triggers when the user logs in
@@ -31,6 +30,7 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export default NextAuth(authOptions);
