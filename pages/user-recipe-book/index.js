@@ -1,4 +1,4 @@
-import { authOptions } from "../api/auth/[...nextAuth]";
+import { authOptions } from "/api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
 
 import styled from "styled-components";

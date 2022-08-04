@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { authOptions } from "./api/auth/[...nextauth]";
+import { authOptions } from "/api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 import styled from "styled-components";
 import Spacer from "../src/global-components-and-functions/components/Spacer";
