@@ -14,7 +14,9 @@ const Index = () => {
     router.push("/user-recipe-book/add-a-recipe");
   };
 
-  const handleMyRecipeBook = () => {};
+  const handleMyRecipeBook = () => {
+    router.push("/user-recipe-book/my-recipes");
+  };
 
   return (
     <Wrapper>

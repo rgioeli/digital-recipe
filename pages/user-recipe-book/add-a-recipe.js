@@ -8,15 +8,19 @@ import { v4 } from "uuid";
 import Spacer from "../../src/global-components-and-functions/components/Spacer";
 import ImageWithCaption from "../../src/global-components-and-functions/components/ImageWithCaption";
 import { Oval } from "react-loader-spinner";
+import { useRouter } from "next/router";
 
 const AddARecipePage = () => {
   //STATE
   const [numberOfIngredients, setNumberOfIngredients] = useState([]);
-  const [introductionMessage, setIntroductionMessage] = useState("");
+  const [introduction, setIntroduction] = useState("");
   const [recipeName, setRecipeName] = useState("");
   const [directions, setDirections] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  //ROUTER
+  const router = useRouter();
 
   //FUNCTIONS
   const handleSaveRecipe = async () => {
@@ -26,7 +30,7 @@ const AddARecipePage = () => {
         method: "POST",
         body: JSON.stringify({
           ingredients: numberOfIngredients,
-          introductionMessage,
+          introduction,
           recipeName,
           directions,
         }),
@@ -39,6 +43,7 @@ const AddARecipePage = () => {
       }
       if (success) {
         setLoading(false);
+        router.push("/user-recipe-book/my-recipes");
       }
     } catch (error) {
       setLoading(false);
@@ -82,7 +87,7 @@ const AddARecipePage = () => {
         handleClick={handleRecipeName}
       />
       <Spacer direction={"top"} size={"1rem"} />
-      <Introduction setIntroductionMessage={setIntroductionMessage} />
+      <Introduction setIntroduction={setIntroduction} />
       <p className={"title"}>Ingredients</p>
       {numberOfIngredients.map((x) => (
         <AddIngredient
@@ -98,7 +103,11 @@ const AddARecipePage = () => {
       </button>
       <Spacer direction={"top"} size={"1rem"} />
       <Directions setDirections={setDirections} />
-      <button onClick={handleSaveRecipe} className="small-button save-button">
+      <button
+        disabled={loading}
+        onClick={handleSaveRecipe}
+        className="small-button save-button"
+      >
         {loading ? (
           <Oval
             wrapperStyle={{ padding: 0 }}

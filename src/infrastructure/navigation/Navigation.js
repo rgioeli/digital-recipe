@@ -2,11 +2,12 @@ import styled from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsFillBookFill } from "react-icons/bs";
 import Image from "next/image";
 import Spacer from "../../global-components-and-functions/components/Spacer";
 import NavigationDropdown from "./NavigationDropdown";
+import { NavContext } from "../../context/OpenNavContext";
 
 const Navigation = () => {
   //SESSION
@@ -15,8 +16,8 @@ const Navigation = () => {
   //ROUTER
   const router = useRouter();
 
-  //STATE
-  const [openNav, setOpenNav] = useState(false);
+  //CONTEXT
+  const { openNav, setOpenNav } = useContext(NavContext);
 
   //FUNCTIONS
   const handleDropdownNavigation = () => {
@@ -29,22 +30,30 @@ const Navigation = () => {
 
   return (
     <Wrapper>
-      <BsFillBookFill
-        style={{ cursor: "pointer" }}
-        color={"#40A5C5"}
-        size={"2rem"}
-        onClick={handleGoHome}
-      />
+      <div className="left-nav-side">
+        <BsFillBookFill
+          style={{ cursor: "pointer" }}
+          color={"#40A5C5"}
+          size={"2rem"}
+          onClick={handleGoHome}
+        />
+        <Spacer direction={"left"} size={"1rem"} />
+        <h2>Digital Recipe</h2>
+      </div>
       <ul>
         {status === "authenticated" && (
-          <li>
-            <StyledLink href={"/user-recipe-book"}>Home</StyledLink>
-          </li>
+          <>
+            <li>
+              <StyledLink href={"/user-recipe-book"}>Home</StyledLink>
+            </li>
+            <Spacer direction={"left"} size={"2rem"} />
+            <li>
+              <StyledLink href={"/user-recipe-book/add-a-recipe"}>
+                Create a Recipe
+              </StyledLink>
+            </li>
+          </>
         )}
-        <Spacer direction={"right"} size={"2rem"} />
-        <li>
-          <StyledLink href={"/how-to-use"}>How to use this app</StyledLink>
-        </li>
         <Spacer direction={"right"} size={"2rem"} />
         {
           // if user is logged in, show the logout button
@@ -79,10 +88,15 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
+  .left-nav-side {
+    display: flex;
+    align-items: center;
+  }
+
   ul {
     display: flex;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     justify-content: flex-end;
     align-items: center;
 

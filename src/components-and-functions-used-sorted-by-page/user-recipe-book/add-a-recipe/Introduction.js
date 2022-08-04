@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-const Introduction = ({ setIntroductionMessage }) => {
-  const handleUpdateIntroductionState = (e) =>
-    setIntroductionMessage(e.target.value);
+const Introduction = ({ setIntroduction }) => {
+  const handleUpdateIntroductionState = (e) => setIntroduction(e.target.value);
   return (
     <Wrapper>
       <p>Recipe Introduction</p>

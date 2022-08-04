@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import styled from "styled-components";
+import { NavContext } from "../../context/OpenNavContext";
 
 const NavigationDropdown = () => {
   //ROUTER
@@ -7,16 +9,17 @@ const NavigationDropdown = () => {
   const handleLinks = (link) => {
     router.push(link);
   };
+
   return (
     <Wrapper>
       <ul>
-        <li onClick={() => handleLinks("user-recipe-book/my-profile")}>
+        <li onClick={() => handleLinks("/user-recipe-book/my-profile")}>
           My Profile
         </li>
-        <li onClick={() => handleLinks("user-recipe-book/my-recipes")}>
+        <li onClick={() => handleLinks("/user-recipe-book/my-recipes")}>
           My Recipes
         </li>
-        <li onClick={() => handleLinks("user-recipe-book/settings")}>
+        <li onClick={() => handleLinks("/user-recipe-book/settings")}>
           Settings
         </li>
         <li onClick={() => handleLinks("/api/auth/signout")}>Logout</li>
