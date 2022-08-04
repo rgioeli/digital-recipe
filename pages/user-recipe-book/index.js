@@ -1,6 +1,5 @@
 import { authOptions } from "../api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
-
 import styled from "styled-components";
 import Image from "next/image";
 import UserMenuOption from "../../src/components-and-functions-used-sorted-by-page/user-recipe-book/UserMenuOption";
