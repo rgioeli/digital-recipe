@@ -1,4 +1,4 @@
-import { authOptions } from "../auth/[...nextAuth]";
+import { authOptions } from "../auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
 import { mongodb } from "../../../src/library/mongodb";
 
