@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DisplayIngredient from "../../src/components-and-functions-used-sorted-by-page/user-recipe-book/my-recipes/DisplayIngredient";
 import { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
+import { v4 } from "uuid";
 
 const MyRecipesPage = () => {
   //STATE
@@ -35,13 +36,14 @@ const MyRecipesPage = () => {
         <Wrapper>
           {recipes.length ? (
             recipes.map((x) => (
-              <div className="recipe-container">
+              <div key={v4()} className="recipe-container">
                 <h2>{x.title}</h2>
                 <p className="bold-text">Introduction</p>
                 <p>{x.introduction || "N/A"}</p>
                 <p className="bold-text">Ingredients</p>
                 {x.ingredients.map((i) => (
                   <DisplayIngredient
+                    key={v4()}
                     name={i.ingredientName}
                     type={i.typeOfMeasurement}
                     fraction={i.fractionMeasurement}
