@@ -50,7 +50,7 @@ const MyRecipesPage = () => {
       {!loading ? (
         <Wrapper>
           {recipes.length > 0 &&
-            recipes.map((x) => <DisplayRecipe recipe={x} />)}
+            recipes.map((x) => <DisplayRecipe key={x._id} recipe={x} />)}
         </Wrapper>
       ) : (
         <LoadingDiv>
