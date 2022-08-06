@@ -31,6 +31,11 @@ export const authOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  theme: {
+    brandColor: "#40a5c5",
+    colorScheme: "light", // "auto" | "dark" | "light"
+    logo: "/images/logo-image/logo-image.jpg", // Absolute URL to image
+  },
 };
 
 export default NextAuth(authOptions);
