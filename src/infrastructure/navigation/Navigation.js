@@ -37,8 +37,6 @@ const Navigation = () => {
           size={"2rem"}
           onClick={handleGoHome}
         />
-        <Spacer direction={"left"} size={"1rem"} />
-        <h2>Digital Recipe</h2>
       </div>
       <ul>
         {status === "authenticated" && (
@@ -56,7 +54,7 @@ const Navigation = () => {
         )}
         <Spacer direction={"right"} size={"2rem"} />
         {
-          // if user is logged in, show the logout button
+          // if user is logged in, show the user nav
           status === "authenticated" && (
             <UserOptions onClick={handleDropdownNavigation}>
               <p>{session.user.name}</p>

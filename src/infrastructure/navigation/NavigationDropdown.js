@@ -13,14 +13,8 @@ const NavigationDropdown = () => {
   return (
     <Wrapper>
       <ul>
-        <li onClick={() => handleLinks("/user-recipe-book/my-profile")}>
-          My Profile
-        </li>
         <li onClick={() => handleLinks("/user-recipe-book/my-recipes")}>
           My Recipes
-        </li>
-        <li onClick={() => handleLinks("/user-recipe-book/settings")}>
-          Settings
         </li>
         <li onClick={() => handleLinks("/api/auth/signout")}>Logout</li>
       </ul>
@@ -31,7 +25,7 @@ const NavigationDropdown = () => {
 const Wrapper = styled.div`
   position: absolute;
   right: 0;
-  bottom: -9.5rem;
+  bottom: -4.25rem;
   z-index: 100;
   min-width: 200px;
   background-color: #fff;
