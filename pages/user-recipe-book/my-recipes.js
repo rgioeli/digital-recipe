@@ -62,7 +62,7 @@ const MyRecipesPage = () => {
       {!loading && recipes.length === 0 && (
         <NoRecipesMessage>
           <p>You do not have any recipes yet.</p>
-
+          <Spacer direction={"top"} size={"0.5rem"} />
           <button onClick={handleCreateRecipeLink}>
             Click here to create one
           </button>
@@ -101,9 +101,10 @@ const LoadingDiv = styled.div`
 const NoRecipesMessage = styled.div`
   width: 100%;
   max-width: 1024px;
+  height: 20vh;
+  margin: auto;
   display: flex;
   flex-flow: column;
-  height: 30vh;
   justify-content: center;
   align-items: center;
 `;

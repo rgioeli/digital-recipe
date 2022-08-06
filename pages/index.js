@@ -5,12 +5,13 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
 import styled from "styled-components";
 import Spacer from "../src/global-components-and-functions/components/Spacer";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push("/api/auth/signin");
+    signIn();
   };
 
   return (
