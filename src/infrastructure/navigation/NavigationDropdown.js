@@ -32,7 +32,7 @@ const Wrapper = styled.div`
   position: absolute;
   right: 0;
   bottom: -9.5rem;
-  z-index: 1;
+  z-index: 100;
   min-width: 200px;
   background-color: #fff;
   box-shadow: 1px 1px 2.5px 1px #999;

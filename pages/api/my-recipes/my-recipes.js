@@ -3,7 +3,6 @@ import { authOptions } from "../auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
 
 export default async function handler(req, res) {
-  console.log("UHHHHHH");
   //check if button was clicked on client
   if (req.method !== "GET") return res.json({ error: "Must be get" });
   //check if there is a session

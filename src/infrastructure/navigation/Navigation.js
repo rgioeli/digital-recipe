@@ -112,7 +112,6 @@ const UserOptions = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.themeColor};
-  border-radius: 0.5rem;
   p {
     color: #fff;
   }

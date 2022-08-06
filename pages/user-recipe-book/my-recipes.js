@@ -5,8 +5,14 @@ import DisplayIngredient from "../../src/components-and-functions-used-sorted-by
 import { useEffect, useState } from "react";
 import { Oval } from "react-loader-spinner";
 import { v4 } from "uuid";
+import ImageWithCaption from "../../src/global-components-and-functions/components/ImageWithCaption";
+import { useRouter } from "next/router";
+import Spacer from "../../src/global-components-and-functions/components/Spacer";
+import DisplayRecipe from "../../src/components-and-functions-used-sorted-by-page/user-recipe-book/my-recipes/DisplayRecipe";
 
 const MyRecipesPage = () => {
+  //ROUTER
+  const router = useRouter();
   //STATE
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,6 +21,10 @@ const MyRecipesPage = () => {
     handleGetMyRecipes();
   }, []);
   //FUNCTIONS
+  const handleCreateRecipeLink = () => {
+    router.push("/user-recipe-book/add-a-recipe");
+  };
+
   const handleGetMyRecipes = async () => {
     setLoading(true);
     try {
@@ -32,39 +42,31 @@ const MyRecipesPage = () => {
   };
   return (
     <>
+      <ImageWithCaption
+        src={"/images/my-recipes-image/my-recipes-image.jpg"}
+        title={"My Recipe Book"}
+      />
+      <Spacer direction={"top"} size={"0.5rem"} />
       {!loading ? (
         <Wrapper>
-          {recipes.length ? (
-            recipes.map((x) => (
-              <div key={v4()} className="recipe-container">
-                <h2>{x.title}</h2>
-                <p className="bold-text">Introduction</p>
-                <p>{x.introduction || "N/A"}</p>
-                <p className="bold-text">Ingredients</p>
-                {x.ingredients.map((i) => (
-                  <DisplayIngredient
-                    key={v4()}
-                    name={i.ingredientName}
-                    type={i.typeOfMeasurement}
-                    fraction={i.fractionMeasurement}
-                    number={i.wholeNumberMeasurement}
-                  />
-                ))}
-                <p className="bold-text">Directions</p>
-                <p>{x.directions}</p>
-              </div>
-            ))
-          ) : (
-            <>
-              <p>You do not have any recipes yet.</p>
-              <button>Click here to create one</button>
-            </>
-          )}
+          {recipes.length > 0 &&
+            recipes.map((x) => <DisplayRecipe recipe={x} />)}
         </Wrapper>
       ) : (
         <LoadingDiv>
           <Oval color="#40a5c5" secondaryColor="#40a5c5" />
         </LoadingDiv>
+      )}
+      {/* If we aren't loading and there are no
+      recipes to load, show a message */}
+      {!loading && recipes.length === 0 && (
+        <NoRecipesMessage>
+          <p>You do not have any recipes yet.</p>
+
+          <button onClick={handleCreateRecipeLink}>
+            Click here to create one
+          </button>
+        </NoRecipesMessage>
       )}
     </>
   );
@@ -85,18 +87,10 @@ const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   grid-gap: 0.5rem;
-  .bold-text {
-    font-weight: bold;
-  }
-  .recipe-container {
-    border: 2px solid #40a5c5;
-    padding: 0.75em;
-  }
 `;
 
 const LoadingDiv = styled.div`
   width: 100%;
-  max-width: 1024px;
   margin: auto;
   height: 30vh;
   display: flex;
@@ -104,4 +98,13 @@ const LoadingDiv = styled.div`
   align-items: center;
 `;
 
+const NoRecipesMessage = styled.div`
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  flex-flow: column;
+  height: 30vh;
+  justify-content: center;
+  align-items: center;
+`;
 export default MyRecipesPage;
